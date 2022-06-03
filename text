@@ -1,0 +1,49 @@
+bước 1: tạo package.js
+ npm init
+bước 2:cài js-server
+npm i json-server
+bước 3: tạo file db.json
+- tư duy muốn lưu dữ liểu kiểu như thến nào ví dụ :
+{
+    "khóa học":[
+        {
+            "id":1
+            "name": "javascript basic"
+            "mota": "khóa học cơ bản"
+        }
+    ]
+}
+bước 4:  vào file package.json tìm phần javascript thêm ( cách này tạo  trên từng thư mục)
+
+"start": "json-server --watch db.json",
+
+sau đó vào teminal gõ: npm start
+
+bước 5 sau đó dùng fetch(courseApi) bên file js để ktra kết quả.
+Tuân theo tiêu chuẩn REST
+
+
+================================================localStorage============================================================
+
+//cách lưu dữ liệu lên  localStorage
+function arrayList(key) {
+    let store= JSON.parse(localStorage.getItem(key))??[]
+    const  save=()=>{
+        localStorage.setItem(key,JSON.stringify(store));
+    }
+    return {
+        get(key) {
+            return store[key];
+        },
+        add(value) {
+            store.push(value)
+            save();
+        },
+
+        edit(key) {
+            delete  store[key]
+            save();
+        }
+    }
+}
+
